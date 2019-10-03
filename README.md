@@ -45,4 +45,4 @@ Some parts of the engine, mainly the math classes is *src_js/math*, are heavily 
 
 Following publications are based on this project:
 
-* [*Progressive Real-Time Rendering of One Billion Points Without Hierarchical Acceleration Structures*](https://www.cg.tuwien.ac.at/research/publications/2019/TR%20193-2-2019-4/), Markus Schütz, Gottfried Mandlburger, Johannes Otepka, Michael Wimmer, to be published
+* [*Progressive Real-Time Rendering of One Billion Points Without Hierarchical Acceleration Structures*](https://www.cg.tuwien.ac.at/research/publications/2019/TR%20193-2-2019-4/), Markus Schütz, Gottfried Mandlburger, Johannes Otepka, Michael Wimmer, Preprint & under submission to a peer reviewed venue.
