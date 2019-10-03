@@ -6,8 +6,7 @@ Skye is a live coding framework and point cloud viewer using a progressive rende
 * The javascript engine is backed by a C++ and OpenGL core. JS bindings exist for most OpenGL functions. Some performance sensitive parts may be written entirely in C++.
 * It's relatively easy to implement your own functionality in C++ and write a JS binding to it. Check V8Helper.cpp for some examples. There are also examples like _readFileAsync_ for bindings that return promises, and therefore allow you to execute C++ code in parallel threads and invoke a callback / resolve the promise in JS once the thread finishes.
 
-
- It's being developed at the [Research Division of Computer Graphics, TU Wien](https://www.cg.tuwien.ac.at/)  
+It's being developed at the [Research Division of Computer Graphics, TU Wien](https://www.cg.tuwien.ac.at/)  
 
 Video (YouTube):
 
@@ -46,6 +45,4 @@ Some parts of the engine, mainly the math classes is *src_js/math*, are heavily 
 
 Following publications are based on this project:
 
-* *Progressive Real-Time Rendering of One Billion Points Without Hierarchical Acceleration Structures*, Markus Schütz, Gottfried Mandlburger, Johannes Otepka, Michael Wimmer, to be published
-* *Live Coding of a VR Render Engine in VR*, Markus Schütz, Michael Wimmer, IEEE VR 2019 Poster
-* *Real-Time Continuous Level of Detail Rendering of Point Clouds*, Markus Schütz, Katharina Krösl, Michael Wimmer, IEEE VR 2019 Paper
+* [*Progressive Real-Time Rendering of One Billion Points Without Hierarchical Acceleration Structures*](https://www.cg.tuwien.ac.at/research/publications/2019/TR%20193-2-2019-4/), Markus Schütz, Gottfried Mandlburger, Johannes Otepka, Michael Wimmer, to be published
