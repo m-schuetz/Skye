@@ -10,11 +10,15 @@ Skye is a live coding framework and point cloud viewer using a progressive rende
 
 It's being developed at the [Research Division of Computer Graphics, TU Wien](https://www.cg.tuwien.ac.at/)  
 
-Video (YouTube):
+Videos (YouTube):
 
 <a href="https://www.youtube.com/watch?v=6_ivIcynok8" target="_blank">
-	<img src="./resources/images/video_preview.jpg" />
+	<img src="./resources/images/video_preview.jpg" width="40%"/>
+</a> <a href="https://youtu.be/YFAThGdXL8s" target="_blank">
+	<img src="./resources/images/video_preview_2.jpg" width="40%"/>
 </a>
+
+
 
 ## Getting Started
 
