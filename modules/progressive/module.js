@@ -26,4 +26,6 @@ monitorJS(`${rootDir}/modules/progressive/eval/screenshots_wien.js`);
 monitorJS(`${rootDir}/modules/progressive/eval/vr_wien.js`);
 monitorJS(`${rootDir}/modules/progressive/eval/vr_candi_sari.js`);
 
+monitorJS(`${rootDir}/modules/progressive/progressive_pointcloud.js`);
+
 "module progressive";
