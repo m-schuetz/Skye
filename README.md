@@ -1,6 +1,6 @@
 # Skye
 
-This is the source code to the paper: [*Progressive Real-Time Rendering of One Billion Points Without Hierarchical Acceleration Structures*](https://www.cg.tuwien.ac.at/research/publications/2019/TR%20193-2-2019-4/).
+This is the source code to the paper: [*Progressive Real-Time Rendering of One Billion Points Without Hierarchical Acceleration Structures*](https://www.cg.tuwien.ac.at/research/publications/2019/TR%20193-2-2019-4/) (_Markus Schütz, Gottfried Mandlburger, Johannes Otepka, Michael Wimmer_).
 
 Skye is a live coding framework and point cloud viewer using a progressive rendering method that allows viewing any point cloud that fits in GPU memory in real time without the need to create hierarchical acceleration structures in advance. Instead of rendering all the points every frame, we distribute the rendering over multiple frames. The previous frame is reprojected to the current in order to preserve already rendered detail, and holes are filled by rendering a certain number of random points. The amount of random points can be adjusted to ensure real-time frame rates and over the course of a few frames, the image will converge to the full model.
 
@@ -47,8 +47,3 @@ This project is an early prototype that is super unstable. It works, but you sho
 This project is licensed under the 2-Clause BSD License, see LICENSE.txt.
 Some parts of the engine, mainly the math classes is *src_js/math*, are heavily inspired and partially taken from [three.js](https://github.com/mrdoob/three.js/), which is available under the [MIT License](https://github.com/mrdoob/three.js/blob/dev/LICENSE).
 
-<!-- ## References
-
-Following publications are based on this project:
-
-* [*Progressive Real-Time Rendering of One Billion Points Without Hierarchical Acceleration Structures*](https://www.cg.tuwien.ac.at/research/publications/2019/TR%20193-2-2019-4/), Markus Schütz, Gottfried Mandlburger, Johannes Otepka, Michael Wimmer, Preprint & under submission to a peer reviewed venue. -->
