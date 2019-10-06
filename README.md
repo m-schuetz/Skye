@@ -40,9 +40,7 @@ Rendering performance depends on how many points you use to progressively fill h
 
 <img src="doc/perf.png"/>
 Rendering performance. Brute-force: Time to render all points in a single frame. Progressive: Time spent on the passes and the
-total time of a progressively rendered frame. Budget: Number of points rendered in the Fill pass. All timings in milliseconds. 
-
-A notable result is the Vienna data set on an NVIDIA 1660. Both, the progressive and the brute-force method, run multiple times faster if you render only the first 230 million points instead of all 277 million points. This is because at some point, the GPU will allocate shared system memory for part of the data, instead of putting it all on GPU memory. When that happens, the part that's in shared memory will be super slow. This issue affects mostly the Prepare pass, which retrieves the point data from all visible points. Unfortunately, a lot of them are going to be in random places in shared memory, which crashes performance. On the other hand, it can still run in real-time if the point budget in the fill pass is low, but the time to convergence will be multiple times higher. 
+total time of a progressively rendered frame. Budget: Number of points rendered in the Fill pass. All timings in milliseconds. The Vienna data set on 1660 produces notable results. The progressive method converges multiple times faster if only the first 230 million points are rendered, instead of all 277. This is because if there is not enough GPU memory left, the GPU will use slow shared memory for parts of the data. The progressive rendering approach can still reach real-time performance in such cases, but the time to convergence will be multiple times larger.
 
 ## Limitations
 
