@@ -114,7 +114,7 @@ void main(){
 
 	int64_t primeI64 = int64_t(uPrime);
 	int64_t t = permuteI(int64_t(globalInputIndex), primeI64);
-	//t = permuteI(t, primeI64);
+	t = permuteI(t, primeI64);
 	uint targetIndex = uint(t);
 
 	// disable shuffling
