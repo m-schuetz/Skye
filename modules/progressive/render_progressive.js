@@ -217,7 +217,7 @@ renderPointCloudProgressive = (function(){
 		let buffers = pointcloud.glBuffers;
 
 		//let remainingBudget = 3 * 1000 * 1000;
-		let remainingBudget = 1 * 1000 * 1000;
+		let remainingBudget = Math.min(1 * 100 * 1000, pointcloud.numPoints);
 		//remainingBudget = 100 * 1000;
 		//let remainingBudget = 25836417;
 
