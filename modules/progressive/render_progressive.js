@@ -3,6 +3,8 @@ fillToggle = 0;
 
 dynamicFillBudgetEnabled = true;
 
+POINT_SIZE = 1;
+
 getRenderProgressiveState = function(target){
 
 
@@ -163,6 +165,8 @@ renderPointCloudProgressive = (function(){
 			gl.uniform1i(shReproject.uniforms.uGradient, 0);
 		}
 
+		gl.uniform1f(shReproject.uniforms.uPointSize, POINT_SIZE);
+
 		if(typeof ATTRIBUTE_MODE === "undefined"){
 			ATTRIBUTE_MODE = 1;
 		}
@@ -204,7 +208,9 @@ renderPointCloudProgressive = (function(){
 			gl.uniform1i(shFill.uniforms.uGradient, 0);
 		}
 
-		gl.uniform1i(shReproject.uniforms.uAttributeMode, ATTRIBUTE_MODE);
+		gl.uniform1i(shFill.uniforms.uAttributeMode, ATTRIBUTE_MODE);
+
+		gl.uniform1f(shFill.uniforms.uPointSize, POINT_SIZE);
 
 		gl.uniformMatrix4fv(shFill.uniforms.uWorldViewProj, 1, gl.FALSE, transform_m32);
 
