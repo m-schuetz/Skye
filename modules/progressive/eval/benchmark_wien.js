@@ -5,10 +5,10 @@ if(!$("testcloud")){
 	//let las = loadLASProgressive("D:/dev/pointclouds/tu_photogrammetry/wienCity_v7_250M.las");
 	
 	//let las = loadBINProgressive("D:/dev/pointclouds/tu_photogrammetry/wienCity_v6_500M.bin");
-	//let las = loadBINProgressive("D:/dev/pointclouds/tu_photogrammetry/wienCity_v6_250M.bin");
+	let las = loadBINProgressive("D:/dev/pointclouds/tu_photogrammetry/wienCity_v6_250M.bin");
 
 	//let las = loadLASProgressive("D:/dev/pointclouds/tu_photogrammetry/wienCity_v6_125M.las");
-	let las = loadLASProgressive("D:/dev/pointclouds/tuwien_baugeschichte/arbegen_257.las");
+	// let las = loadLASProgressive("D:/dev/pointclouds/tuwien_baugeschichte/arbegen_257.las");
 
 	let pc = new PointCloudProgressive("testcloud", "blabla");
 
@@ -75,18 +75,19 @@ if(!$("testcloud")){
 
 }
 
-// view.set(
-// 	[342.979, 478.404, -49.588], 
-// 	[729.613, -101.396, -645.563]
-// );
+view.set(
+	[342.979, 478.404, -49.588], 
+	[729.613, -101.396, -645.563]
+);
 
-// window.x = 0;
-// window.y = 0;
-// window.width = 1920;
-// window.height = 1080;
+window.x = 0;
+window.y = 0;
+window.width = 1920;
+window.height = 1080;
 
 MSAA_SAMPLES = 1;
 EDL_ENABLED = false;
+GLTimerQueries.enabled = true;
 
 camera.near = 0.2;
 

@@ -180,7 +180,7 @@ GLTimerQueries.resolve = function () {
 
 	GLTimerQueries.marks = new Map();
 
-
+	let tStillToResolve = now();
 	let stillToResolve = [];
 	for (let mark of GLTimerQueries.marksToResolve) {
 
@@ -194,17 +194,17 @@ GLTimerQueries.resolve = function () {
 		} else {
 			stillToResolve.push(mark);
 		}
-
 	}
 	GLTimerQueries.marksToResolve = stillToResolve;
-	//log(GLTimerQueries.marksToResolve.length);
+
+	// setDebugValue("debugval", GLTimerQueries.marksToResolve.length);
 
 	if (GLTimerQueries.marksToResolve.length > 100) {
 		log(`WARNING: more than 100 queries active`);
 	}
 
 
-	//let tsh = now();
+	let tResolve = now();
 	let unresolvedMeasures = [];
 	for (let measure of GLTimerQueries.measures) {
 
@@ -246,23 +246,26 @@ GLTimerQueries.resolve = function () {
 			}
 		}
 	}
-	//let durationtsh = (now() - tStart) * 1000;
-	//log(durationtsh.toFixed(3));
-
-	//let tSh = now();
+	
+	let tAverage = now();
 	for (let [name, history] of GLTimerQueries.history) {
-		let sum = history.reduce((a, i) => a + i, 0);
+		let sum = 0;
+		let min = Infinity;
+		let max = -Infinity;
+		for(let value of history){
+			sum += value;
+			min = Math.min(min, value);
+			max = Math.max(max, value);
+		}
 		let avg = sum / history.length;
-		let min = Math.min(...history);
-		let max = Math.max(...history);
 
 		let msAvg = (avg * 1000).toFixed(3);
 		let msMin = (min * 1000).toFixed(3);
 		let msMax = (max * 1000).toFixed(3);
 
-		//setDebugValue(`gl.${name}`, `${msAvg}ms / ${msMin}ms / ${msMax}ms`);
 		setDebugValue(`gl.${name}`, `{"mean": ${msAvg}, "min": ${msMin}, "max": ${msMax}}`);
 	}
+
 
 	GLTimerQueries.measures = unresolvedMeasures;
 

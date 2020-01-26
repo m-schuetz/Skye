@@ -17,6 +17,7 @@
 #include "GLFW\glfw3.h"
 
 #include "ComputeShader.h"
+#include "V8Helper.h"
 #include "BArray.h"
 
 #include <Windows.h>
@@ -132,6 +133,13 @@ public:
 				pointsLoaded += chunkSizePoints;
 				numLoaded = pointsLoaded;
 
+				{
+					double progress = double(pointsLoaded) / double(numPoints);
+					string strProgress = std::to_string(int(progress * 100));
+					V8Helper::instance()->debugValue["pointcloud_progress"] = strProgress + "%";
+				}
+				
+
 				if (pointsLoaded >= numPoints) {
 					break;
 				}
@@ -141,6 +149,9 @@ public:
 			auto end = now();
 			auto duration = end - start;
 			cout << "finished loading file: " << duration << "s" << endl;
+
+			//V8Helper::instance()->debugValue["pointcloud_loaded"] = "true";
+			V8Helper::instance()->debugValue["pointcloud_progress"] = "100%";
 
 
 		});

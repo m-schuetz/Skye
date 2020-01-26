@@ -113,5 +113,8 @@
     <ClInclude Include="modules\progressive\ProgressiveBINLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\TaskPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

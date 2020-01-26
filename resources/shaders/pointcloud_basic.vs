@@ -58,6 +58,6 @@ void main() {
 	//float w = float(gl_VertexID) / float(node.numPoints);
 	//vColor = vec3(w, 0, 0);
 
-	gl_PointSize = 2.0;
+	gl_PointSize = 1.0;
 
 }

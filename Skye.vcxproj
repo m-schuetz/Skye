@@ -167,6 +167,7 @@ copy /Y "$(SolutionDir)libs\openvr\openvr_api.dll" "$(OutDir)"</Command>
     <ClInclude Include="include\GLTimerQueries.h" />
     <ClInclude Include="include\OpenVRHelper.h" />
     <ClInclude Include="include\Shader.h" />
+    <ClInclude Include="include\TaskPool.h" />
     <ClInclude Include="include\utils.h" />
     <ClInclude Include="include\V8ComputeShader.h" />
     <ClInclude Include="include\v8File.h" />

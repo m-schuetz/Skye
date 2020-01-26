@@ -11,7 +11,6 @@ uniform int uOffset;
 layout(binding = 0) uniform sampler2D uGradient;
 
 uniform int uAttributeMode;
-uniform float uPointSize;
 
 #define ATT_MODE_SCALAR 0
 #define ATT_MODE_VECTOR 1
@@ -43,7 +42,6 @@ vec3 getColorFromV3(){
 void main() {
 	
 	gl_Position = uWorldViewProj * vec4(aPosition, 1.0);
-	gl_PointSize = uPointSize;
 	
 	if(uAttributeMode == ATT_MODE_VECTOR){
 		vColor = getColorFromV3();
@@ -62,6 +60,12 @@ void main() {
 		float((vertexID >> 16) & 0xFF) / 255.0,
 		float((vertexID >> 24) & 0xFF) / 255.0
 	);
+
+	if(aValue == 0 && aPosition.x == 0.0){
+
+		// discard uninitialized points
+		gl_Position = vec4(10.0, 10.0, 10.0, 1.0);
+	}
 
 	// {
 	// 	//float t = float(aIndex / 100) / 500000.0;

@@ -20,6 +20,7 @@
 #include "V8Shader.h"
 #include "V8ComputeShader.h"
 #include "V8File.h"
+#include "TaskPool.h"
 //#include "LASLoader.h"
 
 using std::vector;
@@ -1799,6 +1800,17 @@ void V8Helper::setupGL() {
 		args.GetReturnValue().Set(v);
 	}));
 
+	tpl->Set(String::NewFromUtf8(isolate, "pointSize"), FunctionTemplate::New(isolate, [](const FunctionCallbackInfo<Value>& args) {
+		if (args.Length() != 1) {
+			V8Helper::_instance->throwException("pointSize requires 1 arguments");
+			return;
+		}
+
+		float size = args[0]->IsFloat32Array();
+
+		glPointSize(size);
+	}));
+
 	tpl->Set(String::NewFromUtf8(isolate, "exit"), FunctionTemplate::New(isolate, [](const FunctionCallbackInfo<Value>& args) {
 		if (args.Length() != 1) {
 			V8Helper::_instance->throwException("exit requires 0 arguments");
@@ -1887,8 +1899,23 @@ void V8Helper::setupV8() {
 		string value = *strValue;
 
 		V8Helper::instance()->debugValue[key] = value;
+	});
 
-		//cout << key << ": " << value << endl;
+	V8Helper::_instance->registerFunction("getDebugValue", [](const FunctionCallbackInfo<Value>& args) {
+		if (args.Length() != 1) {
+			V8Helper::_instance->throwException("getDebugValue requires 1 arguments");
+			return;
+		}
+
+		String::Utf8Value strKey(args[0]);
+
+		string key = *strKey;
+
+		string value = V8Helper::instance()->debugValue[key];
+
+		auto v8str = v8::String::NewFromUtf8(Isolate::GetCurrent(), value.c_str());
+
+		args.GetReturnValue().Set(v8str);
 	});
 
 	V8Helper::_instance->registerFunction("removeDebugValue", [](const FunctionCallbackInfo<Value>& args) {
@@ -2035,15 +2062,41 @@ void V8Helper::setupV8() {
 		t << text;
 
 		t.close();
+	});
 
+	V8Helper::_instance->registerFunction("fsFileDelete", [](const FunctionCallbackInfo<Value>& args) {
+		if (args.Length() != 1) {
+			V8Helper::_instance->throwException("fsFileDelete requires 1 arguments");
+			return;
+		}
 
-		//std::stringstream buffer;
-		//buffer << t.rdbuf();
-		//string text = buffer.str();
+		String::Utf8Value fileUTF8(args[0]);
+		string file = *fileUTF8;
 
-		//auto v8str = v8::String::NewFromUtf8(Isolate::GetCurrent(), text.c_str());
+		fs::remove(file);
+	});
 
-		//args.GetReturnValue().Set(v8str);
+	V8Helper::_instance->registerFunction("fsFileAppendText", [](const FunctionCallbackInfo<Value>& args) {
+		if (args.Length() != 2) {
+			V8Helper::_instance->throwException("fsFileAppendText requires 2 arguments");
+			return;
+		}
+
+		String::Utf8Value fileUTF8(args[0]);
+		string file = *fileUTF8;
+
+		String::Utf8Value textUTF8(args[1]);
+		string text = *textUTF8;
+
+		//fs::remove(file);
+
+		fstream f;
+		f.open(file, ios::out | ios::app);
+
+		f << text;
+
+		f.close();
+
 	});
 
 	V8Helper::_instance->registerFunction("openFile", [](const FunctionCallbackInfo<Value>& args) {
@@ -2352,6 +2405,81 @@ void V8Helper::setupV8() {
 		args.GetReturnValue().Set(resolver->GetPromise());
 
 	});
+
+	struct SleepTask {
+		double duration = 0;
+		uint64_t resolverID = 0;
+		Isolate* isolate = nullptr;
+
+		SleepTask(double duration, uint64_t resolverID, Isolate* isolate) {
+			this->duration = duration;
+			this->resolverID = resolverID;
+			this->isolate = isolate;
+		}
+	};
+
+	auto sleepHandler = [](shared_ptr< SleepTask> task) {
+
+		//auto isolate = Isolate::GetCurrent();
+
+		int milliseconds = task->duration * 1000.0;
+		std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+
+		auto resolverID = task->resolverID;
+		auto isolate = task->isolate;
+
+		schedule([resolverID, isolate]() {
+
+			auto persistantResolver = resolvers[resolverID];
+			Local<Promise::Resolver> resolver = Local<Promise::Resolver>::New(isolate, persistantResolver);
+
+			resolver->Resolve(v8::Null(isolate));
+
+			resolvers.erase(resolverID);
+		});
+	};
+
+	static TaskPool<SleepTask>* sleepPool = new TaskPool<SleepTask>(1, sleepHandler);
+
+	V8Helper::_instance->registerFunction("sleep", [](const FunctionCallbackInfo<Value>& args) {
+		if (args.Length() != 1) {
+			V8Helper::_instance->throwException("sleep requires 1 arguments");
+			return;
+		}
+		auto isolate = Isolate::GetCurrent();
+
+		double duration = args[0]->NumberValue();
+
+		Local<Promise::Resolver> resolver = v8::Promise::Resolver::New(isolate);
+
+		long long currentID = resolverID++;
+		resolvers[currentID] = PersistentResolver(isolate, resolver);
+
+
+		auto task = make_shared<SleepTask>(duration, currentID, isolate);
+		sleepPool->addTask(task);
+
+		//thread t([duration, isolate, currentID]() {
+
+		//	int milliseconds = duration * 1000.0;
+		//	std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+
+		//	schedule([currentID, isolate]() {
+
+		//		auto persistantResolver = resolvers[currentID];
+		//		Local<Promise::Resolver> resolver = Local<Promise::Resolver>::New(isolate, persistantResolver);
+
+		//		resolver->Resolve(v8::Null(isolate));
+
+		//		resolvers.erase(currentID);
+		//	});
+
+		//});
+		//t.detach();
+
+		args.GetReturnValue().Set(resolver->GetPromise());
+
+		});
 
 	//V8Helper::_instance->registerFunction("writeState", [](const FunctionCallbackInfo<Value>& args) {
 	//	if (args.Length() != 0) {
