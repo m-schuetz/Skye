@@ -61,6 +61,8 @@ public:
 			auto size = fs::file_size(file);
 			numPoints = size / 16;
 			//numPoints = numPoints > 400'000'000 ? 400'000'000 : numPoints;
+
+			//numPoints = 400'000'000;
 		}
 
 		createBinaryLoaderThread();
@@ -261,10 +263,10 @@ public:
 			glNamedBufferData(ssChunk4B, chunkSize, nullptr, usage);
 		}
 
-		{
-			glCreateBuffers(1, &ssDebug);
-			glNamedBufferData(ssDebug, loader->numPoints * 4, nullptr, usage);
-		}
+		//{
+		//	glCreateBuffers(1, &ssDebug);
+		//	glNamedBufferData(ssDebug, loader->numPoints * 4, nullptr, usage);
+		//}
 
 		string csPath = "../../modules/progressive/distribute.cs";
 		csDistribute = new ComputeShader(csPath);
@@ -308,6 +310,10 @@ public:
 		{// upload
 			glNamedBufferSubData(ssChunk16B, 0, chunkSize, chunk->data);
 			//glNamedBufferSubData(ssChunkIndices, 0, chunkSize * 4, chunk->shuffledOrder.data());
+
+			// don't keep the data in RAM
+			// only for benchmarking reasons, do not commit uncommented!?!
+			//delete chunk;
 		}
 
 		{// distribute to shuffled location
@@ -317,7 +323,7 @@ public:
 
 			glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, ssInput);
 
-			glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 15, ssDebug);
+			//glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 15, ssDebug);
 
 			//cout << "ssDebug: " << ssDebug << endl;
 

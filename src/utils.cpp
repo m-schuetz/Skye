@@ -11,6 +11,12 @@ void monitorFile(string file, std::function<void()> event) {
 
 	std::thread([file, event]() {
 
+		if (!fs::exists(file)) {
+			cout << "ERROR(monitorFile): file does not exist: " << file << endl;
+
+			return;
+		}
+
 		auto lastWriteTime = fs::last_write_time(fs::path(file));
 
 		while (true) {

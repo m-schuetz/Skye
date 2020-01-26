@@ -50,9 +50,9 @@ layout(std430, binding = 9) buffer ssTargetBuffer7{
 
 
 
-layout(std430, binding = 15) buffer ssDebugBuffer{
-	uint debugBuffer[];
-};
+// layout(std430, binding = 15) buffer ssDebugBuffer{
+// 	uint debugBuffer[];
+// };
 
 layout(location = 2) uniform int uNumPoints;
 layout(location = 3) uniform double uPrime;
@@ -120,7 +120,7 @@ void main(){
 	// disable shuffling
 	//targetIndex = globalInputIndex;
 
-	atomicAdd(debugBuffer[targetIndex], 1);
+	// atomicAdd(debugBuffer[targetIndex], 1);
 
 	//targetIndex = globalInputIndex;
 	//targetIndex = 124122626 - globalInputIndex;
