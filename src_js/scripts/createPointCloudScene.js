@@ -179,7 +179,7 @@ createSpot = function(name){
 loadOctreeHeidentor = function(){
 	
 	//let heidentor = new PointCloudOctree("heidentor", "C:/dev/pointclouds/heidentor_converted/cloud.js");
-	let heidentor = new PointCloudOctree("heidentor_oct", "C:/dev/pointclouds/heidentor_averaged/cloud.js");
+	let heidentor = new PointCloudOctree("heidentor_oct", "D:/dev/pointclouds/archpro/heidentor.las_converted/cloud.js");
 	//let heidentor = new PointCloudOctree("heidentor_oct", "C:/dev/pointclouds/heidentor_converted/cloud.js");
 	//let heidentor = new PointCloudOctree("heidentor", "D:/dev/pointclouds/archpro/heidentor/cloud.js");
 	heidentor.transform.elements.set([

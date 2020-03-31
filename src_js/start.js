@@ -78,10 +78,6 @@ runJSFile(`${jsDir}/scripts/createDefaultScene.js`);
 
 watchJS(`${jsDir}/update.js`);
 
-watchJS(`${jsDir}/execute.js`);
-watchJS(`${jsDir}/execute2.js`);
-
-
 
 runJSFile(`${rootDir}/modules/compute/module.js`);
 watchJS(`${rootDir}/modules/compute_ll/render.js`);
@@ -91,13 +87,8 @@ runJSFile(`${rootDir}/modules/octree/module.js`);
 runJSFile(`${rootDir}/modules/clod/module.js`);
 runJSFile(`${rootDir}/modules/build/module.js`);
 
-
-
-
-
-
-
-
+watchJS(`${jsDir}/execute.js`);
+// watchJS(`${jsDir}/execute2.js`);
 
 
 

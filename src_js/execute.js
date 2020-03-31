@@ -8,18 +8,21 @@ if($("desktop_mirror")){
 	$("desktop_mirror").updateMatrixWorld();
 }
 
-if($("heidentor")){
+if(!$("heidentor")){
+	let heidentor = new PointCloudOctree("heidentor", "D:/dev/pointclouds/archpro/heidentor.las_converted/cloud.js");
 
-	let node = $("heidentor");
-
-	let s = 0.1;
-	node.world.elements.set([
-		s, 0, 0, 0, 
-		0, 0, s, 0, 
-		0, s, 0, 0, 
-		1.5, 0.5, -0.5, 1, 
+	heidentor.transform.elements.set([
+		1, 0, 0, 0, 
+		0, 0, -1, 0, 
+		0, 1, 0, 0, 
+		0, 0, 0, 1, 
 	]);
+	scene.root.add(heidentor);
 
+	view.set(
+		[-7.330047391982175, 7.897543503270976, -4.463023058403868],
+		[4.437738969389951, 4.55472018779445, -7.284232739227429]
+	);
 }
 
 
@@ -55,13 +58,11 @@ USER_STUDY_RENDER_OCTREE = false;
 USER_STUDY_RENDER_CLOD = true;
 
 USER_STUDY_BLENDING = false;
-EDL_ENABLED = true;
+EDL_ENABLED = false;
 RENDER_DEFAULT_ENABLED = true;
 
 USER_STUDY_OCTREE_MODE = "ADAPTIVE";
 USER_STUDY_OCTREE_POINT_SIZE = 4;
-
-
 
 USER_STUDY_LOD_MODIFIER = 0;
 
