@@ -61,7 +61,7 @@ uvec4 rgbAt(int pixelID){
 		icolor = uvec4(255, 255, 255, 255);
 	}
 
-	icolor = uvec4(a, a, a, a) * 10;
+	// icolor = uvec4(a, a, a, a) * 5;
 	//icolor = uvec4(b, b, b, a);
 
 	return icolor;

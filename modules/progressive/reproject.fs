@@ -9,8 +9,8 @@ in vec3 vColor;
 in vec4 vVertexID;
 
 void main() {
-	//out_color = vec4(1, 0, 0, 1);
 	out_color = vec4(vColor, 1.0);
+	// out_color = vec4(1, 0, 0, 1);
 	out_indices = vVertexID;
 }
 

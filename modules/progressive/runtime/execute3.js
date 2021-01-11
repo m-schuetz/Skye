@@ -14,14 +14,14 @@
 // }
 
 
-// log(view.position);
+log(view.position);
 
-GLTimerQueries.enabled = true;
-//PROGRESSIVE_BUDGET = 10 * 1000 * 1000;
+// GLTimerQueries.enabled = true;
+// //PROGRESSIVE_BUDGET = 10 * 1000 * 1000;
 
-gl.disable(gl.POINT_SMOOTH);
-gl.disable(gl.PROGRAM_POINT_SIZE );
-gl.pointSize(1.0);
+// gl.disable(gl.POINT_SMOOTH);
+// gl.disable(gl.PROGRAM_POINT_SIZE );
+// gl.pointSize(1.0);
 
 //gl.pointSize(1.0);
 //log(gl.pointSize)

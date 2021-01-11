@@ -102,8 +102,8 @@ view.lookAt(-0.8075575002596201, 1, -0.7614239455653012);
 //createDesktopMirror();
 createImageSpaceQuad();
 
-runJSFile(`${jsDir}/scripts/createSkybox.js`);
-runJSFile(`${jsDir}/scripts/createGround.js`);
+// runJSFile(`${jsDir}/scripts/createSkybox.js`);
+// runJSFile(`${jsDir}/scripts/createGround.js`);
 
 //runJSFile(`${jsDir}/scripts/createMethodLabels.js`);
 //runJSFile(`${jsDir}/scripts/createSpot.js`);

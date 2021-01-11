@@ -53,6 +53,8 @@ void main() {
 
 	//vColor = aValue.xyz;
 
+	gl_PointSize = 1.0;
+
 	int vertexID = gl_VertexID + uOffset;
 	vVertexID = vec4(
 		float((vertexID >>  0) & 0xFF) / 255.0,

@@ -295,7 +295,7 @@ if(typeof setAttribute !== "undefined"){
 	}
 
 
-	{ // for video
+	if(false){ // for video
 
 
 		attributeToggle = attributeToggle % 6;
@@ -329,6 +329,9 @@ if(typeof setAttribute !== "undefined"){
 
 
 	}
+
+	setAttribute([{name: "Scalar field #2", range: [0, 200]}]);
+	ATTRIBUTE_MODE = ATT_MODE_SCALAR;
 
 	
 

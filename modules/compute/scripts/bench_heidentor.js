@@ -3,6 +3,7 @@
 if(typeof e4called === "undefined"){
 	e4called = true;
 	
+	// let las = loadLASProgressive("D:/dev/pointclouds/illuscio/Bjorn Scan 12_30_19 Planar PC UHQ Cleaned.las");
 	let las = loadLASProgressive("D:/dev/pointclouds/archpro/heidentor.las");
 
 	let pc = new PointCloudProgressive("testcloud", "blabla");
@@ -80,17 +81,17 @@ if(typeof e4called === "undefined"){
 
 }
 
-// window.width = 1920;
-// window.height = 1080;
-// window.x = 0;
-// window.y = 0;
+window.width = 1920;
+window.height = 1080;
+window.x = 0;
+window.y = 0;
 
 view.set(
 	[-10.857, 3.839, -14.378],
 	[-7.709, 3.015, -13.759],
 );
 
-camera.fov = 100;
+camera.fov = 60;
 camera.near = 0.1;
 
 

@@ -62,7 +62,7 @@ public:
 			numPoints = size / 16;
 			//numPoints = numPoints > 400'000'000 ? 400'000'000 : numPoints;
 
-			//numPoints = 400'000'000;
+			//numPoints = 1'000'000'000;
 		}
 
 		createBinaryLoaderThread();

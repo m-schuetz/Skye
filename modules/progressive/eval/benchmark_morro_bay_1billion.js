@@ -4,7 +4,7 @@ if(!$("testcloud")){
 	//let las = loadBINProgressive("../../morro_bay.bin");
 	//let las = loadBINProgressive("../../morro_bay_1billion.bin");
 	let las = loadBINProgressive("D:/dev/pointclouds/open_topography/ca13/morro_bay.bin");
-	// let las = loadBINProgressive("D:/dev/pointclouds/open_topography/ca13/morro_bay_1billion.bin");
+	//let las = loadBINProgressive("D:/dev/pointclouds/open_topography/ca13/morro_bay_1billion.bin");
 
 	let pc = new PointCloudProgressive("testcloud", "blabla");
 
@@ -71,9 +71,16 @@ if(!$("testcloud")){
 
 }
 
+// 400 million
+// view.set(
+// 	[485.168, 1511.749, 21.458], 
+// 	[1535.947, 7.916, -1492.148]
+// );
+
+// 1 billion
 view.set(
-	[485.168, 1511.749, 21.458], 
-	[1535.947, 7.916, -1492.148]
+	[1103.3864793373828, 1862.5422015232878, -284.68769984102164],
+	[2898.295867829539, 69.99563809243493, -2463.8822418075906],
 );
 
 window.x = 0;
@@ -148,7 +155,7 @@ async function runTest(){
 		await sleep(1);
 
 		let progress = getDebugValue("pointcloud_progress");
-		log(`load progress: ${progress}`);
+		log(`load progress: ${progress}, time since start: ${now().toFixed(3)}s`);
 
 		if(progress === "100%"){
 			break;
@@ -243,7 +250,7 @@ async function runTest(){
 
 };
 
-runTest();
+//runTest();
 
 
 

@@ -80,7 +80,7 @@ window.y = 200;
 window.width = 1920;
 window.height = 1080;
 
-MSAA_SAMPLES = 4;
+MSAA_SAMPLES = 1;
 EDL_ENABLED = false;
 camera.near = 0.1;
 

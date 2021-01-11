@@ -1,8 +1,8 @@
 
 if(!$("testcloud")){
 	
-	//let las = loadLASProgressive("D:/dev/pointclouds/open_topography/ca13/morro_bay.las");
-	let las = loadBINProgressive("D:/dev/pointclouds/open_topography/ca13/morro_bay.bin");
+	let las = loadLASProgressive("D:/dev/pointclouds/open_topography/ca13/morro_bay.las");
+	//let las = loadBINProgressive("D:/dev/pointclouds/open_topography/ca13/morro_bay.bin");
 
 	let pc = new PointCloudProgressive("testcloud", "blabla");
 
@@ -84,7 +84,7 @@ window.y = 0;
 window.width = 1920;
 window.height = 1080;
 
-MSAA_SAMPLES = 4;
+MSAA_SAMPLES = 1;
 EDL_ENABLED = true;
 //renderDebug = renderPointCloudProgressive;
 //renderDebug = renderPointCloudBasic;

@@ -79,7 +79,7 @@ runJSFile(`${jsDir}/scripts/createDefaultScene.js`);
 watchJS(`${jsDir}/update.js`);
 
 watchJS(`${jsDir}/execute.js`);
-watchJS(`${jsDir}/execute2.js`);
+// watchJS(`${jsDir}/execute2.js`);
 
 
 
